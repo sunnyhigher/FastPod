@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		633549AB1E222BE8008F4DBC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 633549AA1E222BE8008F4DBC /* main.m */; };
+		633549B31E222CF5008F4DBC /* SpecLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 633549B21E222CF5008F4DBC /* SpecLoader.m */; };
+		633549B61E222D85008F4DBC /* SpecEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 633549B51E222D85008F4DBC /* SpecEntity.m */; };
+		633549B91E222EFA008F4DBC /* FastPod.m in Sources */ = {isa = PBXBuildFile; fileRef = 633549B81E222EFA008F4DBC /* FastPod.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,12 @@
 /* Begin PBXFileReference section */
 		633549A71E222BE8008F4DBC /* FastPod */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FastPod; sourceTree = BUILT_PRODUCTS_DIR; };
 		633549AA1E222BE8008F4DBC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		633549B11E222CF5008F4DBC /* SpecLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecLoader.h; sourceTree = "<group>"; };
+		633549B21E222CF5008F4DBC /* SpecLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecLoader.m; sourceTree = "<group>"; };
+		633549B41E222D85008F4DBC /* SpecEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecEntity.h; sourceTree = "<group>"; };
+		633549B51E222D85008F4DBC /* SpecEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecEntity.m; sourceTree = "<group>"; };
+		633549B71E222EFA008F4DBC /* FastPod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastPod.h; sourceTree = "<group>"; };
+		633549B81E222EFA008F4DBC /* FastPod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastPod.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +67,12 @@
 			isa = PBXGroup;
 			children = (
 				633549AA1E222BE8008F4DBC /* main.m */,
+				633549B71E222EFA008F4DBC /* FastPod.h */,
+				633549B81E222EFA008F4DBC /* FastPod.m */,
+				633549B41E222D85008F4DBC /* SpecEntity.h */,
+				633549B51E222D85008F4DBC /* SpecEntity.m */,
+				633549B11E222CF5008F4DBC /* SpecLoader.h */,
+				633549B21E222CF5008F4DBC /* SpecLoader.m */,
 			);
 			path = FastPod;
 			sourceTree = "<group>";
@@ -121,6 +136,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				633549AB1E222BE8008F4DBC /* main.m in Sources */,
+				633549B91E222EFA008F4DBC /* FastPod.m in Sources */,
+				633549B31E222CF5008F4DBC /* SpecLoader.m in Sources */,
+				633549B61E222D85008F4DBC /* SpecEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +236,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 8M2FQ87SLP;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -226,6 +245,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 8M2FQ87SLP;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

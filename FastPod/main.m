@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SpecEntity.h"
+#import "SpecLoader.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        SpecEntity *item = [SpecEntity new];
+        item.name = @"AFNetworking";
+        [SpecLoader loadSpecs:@[item]];
     }
     return 0;
 }
