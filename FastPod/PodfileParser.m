@@ -20,7 +20,7 @@ static NSRegularExpression *expression;
 
 + (NSArray<SpecEntity *> *)startParsing {
     NSString *pwd = [[NSProcessInfo processInfo] environment][@"PWD"];
-//    NSString *pwd = @"/Users/saiakirahui/Desktop/ttt/";
+//    NSString *pwd = @"/Users/PonyCui_Home/Desktop/mmm/";
     NSString *filePath = [pwd stringByAppendingString:@"/Podfile"];
     if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         filePath = [pwd stringByAppendingString:@"/podfile"];
@@ -38,7 +38,7 @@ static NSRegularExpression *expression;
     NSMutableArray *items = [NSMutableArray array];
     NSArray *lines = [contents componentsSeparatedByString:@"\n"];
     [lines enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj hasPrefix:@"pod "]) {
+        if ([[obj stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] hasPrefix:@"pod "]) {
             NSTextCheckingResult *result = [expression firstMatchInString:obj
                                                                   options:NSMatchingReportCompletion
                                                                     range:NSMakeRange(0, [obj length])];
@@ -47,6 +47,39 @@ static NSRegularExpression *expression;
                 if (1 < result.numberOfRanges) {
                     item.name = [obj substringWithRange:[result rangeAtIndex:1]];
                 }
+                NSArray<NSString *> *coms = [obj componentsSeparatedByString:@","];
+                [coms enumerateObjectsUsingBlock:^(NSString * _Nonnull com, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (idx == 0) {
+                        return;
+                    }
+                    com = [com stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    if ([com hasPrefix:@":"]) {
+                        
+                    }
+                    else {
+                        com = [com stringByReplacingOccurrencesOfString:@"['\"]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [com length])];
+                        // version
+                        if ([com hasPrefix:@">="]) {
+                            item.compareType = @">=";
+                        }
+                        else if ([com hasPrefix:@">"]) {
+                            item.compareType = @">";
+                        }
+                        else if ([com hasPrefix:@"<="]) {
+                            item.compareType = @"<=";
+                        }
+                        else if ([com hasPrefix:@"<"]) {
+                            item.compareType = @"<";
+                        }
+                        else if ([com hasPrefix:@"~>"]) {
+                            item.compareType = @"~>";
+                        }
+                        else {
+                            item.compareType = @"=";
+                        }
+                        item.version = [com stringByReplacingOccurrencesOfString:@"[>=<~]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [com length])];
+                    }
+                }];
                 [items addObject:item];
             }
         }

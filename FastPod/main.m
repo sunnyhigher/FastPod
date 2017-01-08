@@ -7,13 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SpecEntity.h"
+#import "FastPod.h"
 #import "SpecLoader.h"
 #import "PodfileParser.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        [SpecLoader loadSpecs:[PodfileParser startParsing]];
+        NSArray *specs = [PodfileParser startParsing];
+        [SpecLoader loadSpecs:specs];
+        [FastPod podUpdate];
     }
     return 0;
 }

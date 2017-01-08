@@ -14,4 +14,8 @@
 
 + (NSString *)specBase;
 
++ (NSString *)loadType;
+
++ (void)podUpdate;
+
 @end

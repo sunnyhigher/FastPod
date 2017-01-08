@@ -13,5 +13,8 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *compareType;
 @property (nonatomic, copy) NSString *version;
+@property (nonatomic, copy) NSString *domainOnGitHub;
+@property (nonatomic, copy) NSString *nameOnGitHub;
+@property (nonatomic, copy) NSString *tagOnGitHub;
 
 @end

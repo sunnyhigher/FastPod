@@ -22,4 +22,26 @@
                                               withString:@"/.cocoapods/repos/master/Specs/"];
 }
 
++ (NSString *)loadType {
+    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"--use-mirror"]) {
+        return @"2";
+    }
+    return @"1";
+}
+
++ (void)podUpdate {
+    [@"#!/bin/sh\npod update --no-repo-update" writeToFile:@"/tmp/runpod.sh"
+                                                atomically:YES
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:nil];
+    NSTask *task = [NSTask new];
+    task.launchPath = @"/bin/sh";
+    task.arguments = @[@"/tmp/runpod.sh"];
+    [task launch];
+    [task setTerminationHandler:^(NSTask * _Nonnull task) {
+        exit(-1);
+    }];
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
+}
+
 @end

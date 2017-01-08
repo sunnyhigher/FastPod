@@ -15,17 +15,17 @@
     NSMutableArray *coms = [NSMutableArray array];
     for (SpecEntity *spec in specs) {
         if ([spec compareType] != nil && [spec version] != nil) {
-            [coms addObject:[NSString stringWithFormat:@"%@|%@|%@",
-                             spec.name,
-                             spec.compareType,
-                             spec.version]];
+            [coms addObject:[NSString stringWithFormat:@"%@_%@_%@",
+                             [spec.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                             [spec.compareType stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                             [spec.version stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
         }
         else {
             [coms addObject:spec.name];
         }
     }
     NSString *targets = [coms componentsJoinedByString:@","];
-    NSString *loadType = @"1";
+    NSString *loadType = [FastPod loadType];
     NSURL *URL = [NSURL URLWithString:
                   [NSString stringWithFormat:@"%@/spec.php?targets=%@&loadType=%@",
                    [FastPod apiBase], targets, loadType]];
@@ -55,9 +55,43 @@
                                                                                   options:kNilOptions];
                         [contentData writeToFile:[NSString stringWithFormat:@"%@/%@.podspec.json", dir, name]
                                    atomically:YES];
+                        
+                        if ([[FastPod loadType] isEqualToString:@"2"]) {
+                            NSDictionary *specObj = [NSJSONSerialization JSONObjectWithData:contentData
+                                                                                    options:kNilOptions
+                                                                                      error:nil];
+                            if ([specObj isKindOfClass:[NSDictionary class]]) {
+                                if ([specObj[@"source"] isKindOfClass:[NSDictionary class]]) {
+                                    if ([specObj[@"source"][@"http"] isKindOfClass:[NSString class]]) {
+                                        [SpecLoader prepareZIP:specObj[@"source"][@"http"]];
+                                    }
+                                }
+                            }
+                        }
                     }];
                 }];
             }
+        }
+    }
+}
+
++ (void)prepareZIP:(NSString *)zipPath {
+    NSString *fn = [zipPath lastPathComponent];
+    fn = [fn stringByReplacingOccurrencesOfString:@".zip" withString:@""];
+    NSArray *coms = [fn componentsSeparatedByString:@"-"];
+    if ([coms count] < 3) {
+        return;
+    }
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/zip.php?domain=%@&name=%@&tag=%@",
+                                       [FastPod apiBase], coms[0], coms[1], coms[2]]];
+    NSLog(@"Preparing %@", coms[0]);
+    if (URL != nil) {
+        NSData *data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:URL] returningResponse:nil error:nil];
+        if ([[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] isEqualToString:@"1"]) {
+        }
+        else {
+            NSLog(@"Prepare %@ zip failed.", coms[1]);
+            abort();
         }
     }
 }

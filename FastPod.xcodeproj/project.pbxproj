@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		633549A71E222BE8008F4DBC /* FastPod */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FastPod; sourceTree = BUILT_PRODUCTS_DIR; };
+		633549A71E222BE8008F4DBC /* fastpod */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fastpod; sourceTree = BUILT_PRODUCTS_DIR; };
 		633549AA1E222BE8008F4DBC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		633549B11E222CF5008F4DBC /* SpecLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecLoader.h; sourceTree = "<group>"; };
 		633549B21E222CF5008F4DBC /* SpecLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecLoader.m; sourceTree = "<group>"; };
@@ -49,7 +49,7 @@
 		633549A81E222BE8008F4DBC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				633549A71E222BE8008F4DBC /* FastPod */,
+				633549A71E222BE8008F4DBC /* fastpod */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -86,7 +86,7 @@
 			);
 			name = FastPod;
 			productName = FastPod;
-			productReference = 633549A71E222BE8008F4DBC /* FastPod */;
+			productReference = 633549A71E222BE8008F4DBC /* fastpod */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -230,7 +230,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = 8M2FQ87SLP;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = fastpod;
 			};
 			name = Debug;
 		};
@@ -239,7 +239,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = 8M2FQ87SLP;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = fastpod;
 			};
 			name = Release;
 		};
@@ -262,6 +262,7 @@
 				633549B01E222BE8008F4DBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
