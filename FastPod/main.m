@@ -9,12 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "SpecEntity.h"
 #import "SpecLoader.h"
+#import "PodfileParser.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        SpecEntity *item = [SpecEntity new];
-        item.name = @"AFNetworking";
-        [SpecLoader loadSpecs:@[item]];
+        [SpecLoader loadSpecs:[PodfileParser startParsing]];
     }
     return 0;
 }
