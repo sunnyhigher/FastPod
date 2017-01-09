@@ -4,8 +4,9 @@
 
 ## 使用方法
 1. 下载 [fastpod](https://github.com/PonyCui/FastPod/raw/master/bin/fastpod) 文件，复制到 /usr/local/bin 目录下。
-2. cd 到需要执行 ```pod update``` 的目录下，执行 ```fastpod``` 命令即可。
-3. 如果需要使用国内镜像，则执行 ```fastpod --use-mirror``` 命令。
+2. 命令行执行 ```sudo chmod 777 /usr/local/bin/fastpod```。
+3. cd 到需要执行 ```pod update``` 的目录下，执行 ```fastpod``` 命令即可。
+4. 如果需要使用国内镜像，则执行 ```fastpod --use-mirror``` 命令。
 
 ## 原理
 1. 通过分析 Podfile 文件，在服务器直接计算需要使用的 podspec.json 并返回至 Cli 程序。
