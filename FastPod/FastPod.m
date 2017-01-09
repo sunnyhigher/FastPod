@@ -24,10 +24,15 @@
 }
 
 + (NSString *)loadType {
-    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"--use-mirror"]) {
+    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"--use-origin"]) {
+        return @"0";
+    }
+    else if ([[[NSProcessInfo processInfo] arguments] containsObject:@"--use-mirror"]) {
         return @"2";
     }
-    return @"1";
+    else {
+        return @"1";
+    }
 }
 
 + (void)podUpdate {
