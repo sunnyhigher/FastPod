@@ -11,7 +11,8 @@
 @implementation FastPod
 
 + (NSString *)apiBase {
-    return @"http://localhost/app/";
+//    return @"http://localhost/app/";
+    return @"http://182.92.85.54/app/";
 }
 
 + (NSString *)specBase {
